@@ -1,0 +1,28 @@
+---
+import Header from '../components/Header.astro';
+// import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+const { title } = Astro.props
+---
+<html lang="en">
+  <header>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+          />
+  </header>
+  <body>
+    <Nav />
+    <Header title={title}/>
+    <slot /> <!-- your content is injected here -->
+    <!-- <Footer /> -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+      Fancybox.bind('[data-fancybox="gallery"]', {
+        //
+      });    
+    </script>
+  </body>
+</html>

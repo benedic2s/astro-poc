@@ -1,0 +1,22 @@
+{
+  "name": "astro-poc",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "astro check && astro build",
+    "dev": "astro dev"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.2.1",
+    "@astrojs/react": "^3.0.4",
+    "@fancyapps/ui": "^5.0.24",
+    "@gjensidige/builders-components": "^0.5.0",
+    "@gjensidige/builders-fonts": "^0.0.7",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^3.3.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "typescript": "^5.2.2"
+  }
+}

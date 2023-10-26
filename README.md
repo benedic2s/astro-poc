@@ -19,3 +19,5 @@ integrations: [
       experimentalReactChildren: true,
     }),
   ],
+
+  https://github.com/benedic2s/astro-poc.git

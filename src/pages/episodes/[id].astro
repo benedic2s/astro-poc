@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    {params: {id: 1}},
+    {params: {id: 2}},
+    {params: {id: 3}},
+    {params: {id: 4}},
+    {params: {id: 5}}
+  ];
+}
+
+const { id } = Astro.params;
+
+const response = await fetch("https://rickandmortyapi.com/graphql",
+  {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({
+      query: `
+      query {
+        episode(id: ${id}) {
+          id
+          name
+          air_date
+          episode
+          created
+        }
+      }`,
+    }),
+  });
+
+  const json = await response.json();
+  const { episode } = json.data;
+---
+
+<style>
+  .episode-box {
+    width: 300px;
+    font-size: 14px;
+    padding: 8px;
+    margin: auto;
+    border: 1px solid grey;
+    border-radius: 4px;
+  }
+  .episode-name {
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+  }
+</style>
+
+<BaseLayout>
+  <div class="episode-box">
+    <a href="/episodes">back</a>
+    <p>Episode {id}</p>
+    <h1 class="episode-name">{episode.name}</h2>
+    <span>Air date: {episode.air_date}</span> <br />
+    <span>Created: {episode.created}</span> <br />
+  </div>
+</BaseLayout>

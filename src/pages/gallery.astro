@@ -1,7 +1,7 @@
 ---
-import Fancybox from '../components/fancybox.tsx';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
 const response = await fetch("https://rickandmortyapi.com/graphql",
   {
@@ -9,24 +9,20 @@ const response = await fetch("https://rickandmortyapi.com/graphql",
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify({
       query: `
-      query {
-  characters(page: 1, filter: { name: "rick" }) {
-    info {
-      count
-    }
-    results {
-      id
-      name
-      image
-    }
-  }
-  location(id: 1) {
-    id
-  }
-  episodesByIds(ids: [1, 2]) {
-    id
-  }
-}
+        query {
+          characters {
+            results {
+              id
+              name
+              image
+              species
+              gender
+              origin {
+                name
+              }
+            }
+          }
+        }
       `,
       variables: {
         id: "ZmlsbXM6MQ==",
@@ -41,13 +37,30 @@ const response = await fetch("https://rickandmortyapi.com/graphql",
 <BaseLayout title="Image Gallery">
 <div style="position: absolute;">
   {characters.results.map((character) => (
-    <a data-fancybox="gallery" href={character.image}>
-      <Image
-      src={character.image}
-      alt={character.name}
-      width="200"
-      height="150" />
+    <a 
+      data-fancybox="gallery"
+      data-caption={`
+        <h3>Name: ${character.name}</h3>
+        <h3>Species: ${character.species}</h3>
+        <h3>Gender: ${character.gender}</h3>
+        <h3>Origin: ${character.origin.name}</h3>
+      `} 
+      href={character.image}>
+        <Image
+        src={character.image}
+        alt={character.name}
+        width="200"
+        height="150" />
       </a>)
       )}
   </div>
+
+  <script>
+    import { Fancybox } from '@fancyapps/ui';
+
+    Fancybox.bind("[data-fancybox]", {
+      // Your options go here
+    });
+  </script>
+
 </BaseLayout>

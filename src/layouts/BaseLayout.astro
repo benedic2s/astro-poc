@@ -11,10 +11,7 @@ const { title } = Astro.props
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
-          />
+    <meta name="generator" content={Astro.generator}>
     <ViewTransitions />
   </head>
   <body>
@@ -24,12 +21,6 @@ const { title } = Astro.props
     <Header title={title}/>
     <slot /> <!-- your content is injected here -->
     <!-- <Footer /> -->
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-      Fancybox.bind('[data-fancybox="gallery"]', {
-        //
-      });    
-    </script>
     </div>
   </body>
 </html>

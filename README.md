@@ -1,8 +1,6 @@
  bunx create-astro .
  bun add @astrojs/renderer-react
  bunx astro add react
- bun add @gjensidige/builders-fonts
- bun add @gjensidige/builders-components
 
 // bunfig.toml
  [install.scopes]
